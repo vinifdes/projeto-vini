@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   php:
     image: php:8.3-fpm
     container_name: php-container
     volumes:
-      - ./src:/var/www/html
+      - C:/Users/vinic/Desktop/php/projeto-vini/src:/var/www/html
     depends_on:
       - mysql
     ports:
@@ -20,8 +18,8 @@ services:
     depends_on:
       - php
     volumes:
-      - ./src:/var/www/html
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - C:/Users/vinic/Desktop/php/projeto-vini/src:/var/www/html
+      - C:/Users/vinic/Desktop/php/projeto-vini/nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - '8080:80'
 
