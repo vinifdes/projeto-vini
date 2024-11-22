@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  php:
+    image: php:8.3-fpm
+    container_name: php-container
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - mysql
+    ports:
+      - '8000:8000'
+    command: >
+      sh -c "docker-php-ext-install pdo pdo_mysql &&
+             php-fpm"
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-container
+    depends_on:
+      - php
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - '8080:80'
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: estudos
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
