@@ -1,6 +1,6 @@
 <x-layout title="Formulário">
 
-    <form action="/series/salvar" method="post">
+    <form action="{{route('series.store')}}" method="post">
         @csrf <!-- Adicione esta linha -->
 
         <div class="mb-3">
