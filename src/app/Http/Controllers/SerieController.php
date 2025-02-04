@@ -28,9 +28,12 @@ class SerieController extends Controller
     }
 
     public function destroy(Request $request) {
-        dd($request->all());
-        // Serie::delete($request->('id'));
+       // dd($request->route());
+       $serie = Serie::find($request->series);
+       if($serie) {
+        $serie->delete();
+       }
         
-            return to_route('series.index');
+       return to_route('series.index');
     }
 }

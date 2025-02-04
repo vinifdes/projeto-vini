@@ -28,6 +28,6 @@ Route::get('/', function () {
 ]);*/
 
 
-Route::resource('/series', SerieController::class)->only(['index', 'create', 'store']);
+Route::resource('/series', SerieController::class)->only(['index', 'create', 'store', 'destroy']);
 
-//Route::post('/series/destroy/{id}', SerieController::class)->name('series.destroy');
+//Route::delete('/series/destroy/{id}', [SerieController::class, 'destroy'])->name('series.destroy');
